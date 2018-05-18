@@ -1,0 +1,19 @@
+#Excluded files
+build
+.sass-cache
+.settings
+startServer.bat
+buildProject.bat
+createProject.bat
+createWar.py
+refreshProject.bat
+refreshStyles.bat
+startServer.bat
+writeFiles.py
+WebContent/public/sass/.sass-cache
+WebContent/node_modules
+WebContent/WEB-INF/classes
+WebContent/WEB-INF/config
+WebContent/WEB-INF/lib
+WebContent/spec
+target

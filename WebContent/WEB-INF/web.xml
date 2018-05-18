@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>visorcatastrocol</display-name>
+  <welcome-file-list>
+    <welcome-file>visor</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>configuracion</param-name>
+    <param-value>/WEB-INF/configuracion.xml</param-value>
+  </context-param>  
+  <context-param>
+    <param-name>propertiesLog4j</param-name>
+    <param-value>/WEB-INF/log4j.properties</param-value>
+  </context-param>  
+</web-app>

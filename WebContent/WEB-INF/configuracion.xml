@@ -1,0 +1,95 @@
+<configuracion>
+
+	<propiedad nombre="proxyHost"				  				valor=""/>
+	<propiedad nombre="proxyPort"				  				valor=""/>
+	<propiedad nombre="proxyUser"				  				valor=""/>
+	<propiedad nombre="proxyPassword"	  					valor=""/>
+	<propiedad nombre="proxyIpExcluded"	  				valor=""/>
+
+	<propiedad nombre="WMS"				  							valor="http://cmc.tragsatec.es/geoserver/Colombia/wms"/>
+	<propiedad nombre="WFS"				  							valor="http://cmc.tragsatec.es/geoserver/Colombia/wfs"/>
+
+	<propiedad nombre="prefijo"				  					valor="Colombia"/>
+
+	<propiedad nombre="grupoBase"  								valor="Cartografía Base"/>
+
+	<propiedad nombre="nbBaseOSM"									valor="OpenStreetMap (OSM)"/>
+	<propiedad nombre="urlBaseOSM"								valor="http://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+
+	<propiedad nombre="nbOrtofoto"								valor="Ortofoto"/>
+	<propiedad nombre="capaOrtofoto"							valor="OrtoColombia"/>
+
+	<propiedad nombre="grupoServiciosIGAC"  			valor="Servicios IGAC"/>
+
+	<propiedad nombre="WMSCartoBasica500"					valor="http://geocarto.igac.gov.co/geoservicios/quinientos_mil/wms"/>
+
+	<propiedad nombre="nbCartoBasica500"					valor="Cartografía Básica escala 1:500.000"/>
+	<propiedad nombre="capaCartoBasica500"				valor="Todas"/>
+
+	<propiedad nombre="WMSCartoBasica100"					valor="http://geocarto.igac.gov.co/geoservicios/cien_mil/wms"/>
+
+	<propiedad nombre="nbCartoBasica100"					valor="Cartografía Básica escala 1:100.000"/>
+	<propiedad nombre="capaCartoBasica100"				valor="Todas"/>
+
+	<propiedad nombre="WMSCartoBasica10"					valor="http://geocarto.igac.gov.co/geoservicios/diez_mil/wms"/>
+
+	<propiedad nombre="nbCartoBasica10"						valor="Cartografía Básica escala 1:10.000"/>
+	<propiedad nombre="capaCartoBasica10"					valor="Todas"/>
+
+	<propiedad nombre="WMSAreasReglaEsp"					valor="http://geocarto.igac.gov.co:8080/geoservicios/sigm/wms"/>
+
+	<propiedad nombre="nbResguardosIndigenas"			valor="Resguardos Indígenas"/>
+	<propiedad nombre="capaResguardosIndigenas"		valor="Resguardos_Indigenas"/>
+
+	<propiedad nombre="nbComunidadesNegras"		    valor="Comunidades Negras"/>
+	<propiedad nombre="capaComunidadesNegras"			valor="Comunidades_Negras"/>
+
+	<propiedad nombre="grupoServiciosIDEAM"  			valor="Servicios IDEAM"/>
+
+	<propiedad nombre="WMSCoberturasTierra"				valor="http://geoapps.ideam.gov.co:8080/geoserver/Estado_Coberturas_Tierra/wms"/>
+
+	<propiedad nombre="nbCoberTierra2000_2002"		valor="Cobertura de la Tierra. Escala 1:100.000. Periodo 2000 - 2002"/>
+	<propiedad nombre="capaCoberTierra2000_2002"	valor="GDBIDEAM.COBERTURA_TIERRA_2000_2002_V2"/>
+
+	<propiedad nombre="nbCoberTierra2005_2009"		valor="Cobertura de la Tierra. Escala 1:100.000. Periodo 2005 - 2009"/>
+	<propiedad nombre="capaCoberTierra2005_2009"	valor="GDBIDEAM.COBERTURA_TIERRA_2005_2009"/>
+
+	<propiedad nombre="nbCoberTierra2010_2012"		valor="Coberturas de la tierra Metodología CORINE Land Cover, periodo 2010-2012"/>
+	<propiedad nombre="capaCoberTierra2010_2012"	valor="GDBIDEAM.COBERTURA_TIERRA__2010_2012"/>
+
+	<propiedad nombre="nbCoberParamos"						valor="Cobertura de paramos 25K 2010-2012"/>
+	<propiedad nombre="capaCoberParamos"					valor="GDBIDEAM.CTPR_25K_2010_2012"/>
+
+	<propiedad nombre="grupoPredial"  						valor="Elementos prediales"/>
+
+	<propiedad nombre="nbTerreno"									valor="Terreno"/>
+	<propiedad nombre="capaTerreno"								valor="vw_terreno"/>
+
+	<propiedad nombre="nbConstruccion"						valor="Construcción"/>
+	<propiedad nombre="capaConstruccion"					valor="vw_construccion"/>
+
+	<propiedad nombre="nbCobertura"								valor="Cobertura"/>
+	<propiedad nombre="capaCobertura"							valor="vw_cobertura"/>
+
+	<propiedad nombre="nbUnidad"									valor="Unidad"/>
+	<propiedad nombre="capaUnidad"								valor="vw_unidad_construccion"/>
+
+	<propiedad nombre="nameUsuario"								valor="Capas de Usuario"/>
+
+	<propiedad nombre="urlGeocoderOSM"						valor="http://nominatim.openstreetmap.org/search/"/>
+
+	<propiedad nombre="grupoLimites"  						valor="Límites Administrativos"/>
+
+	<propiedad nombre="nbDepartamentos"						valor="Departamentos"/>
+	<propiedad nombre="capaDepartamentos"					valor="Departamentos"/>
+
+	<propiedad nombre="nbMunicipios"							valor="Municipios"/>
+	<propiedad nombre="capaMunicipios"						valor="Municipios"/>
+
+	<propiedad nombre="nbColombia"								valor="Colombia"/>
+	<propiedad nombre="capaColombia"							valor="Colombia"/>
+
+	<propiedad nombre="nbElPredialesUnion"				valor="Unión Elementos prediales"/>
+	<propiedad nombre="capaElPredialesUnion"			valor="vw_todo"/>
+
+</configuracion>

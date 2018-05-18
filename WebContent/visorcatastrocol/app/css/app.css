@@ -1,0 +1,317 @@
+@charset "ISO-8859-1";
+
+/*-----------cabecera---------------*/
+#cabecera {
+	height: 70px;
+	background-image: url(../img/cabecerav6.png);
+}
+/*-----------fin cabecera---------------*/
+
+
+/*-----------Ventana de posicion Mouse---------------*/
+#ventMousePosition{
+	background: #bce1f1;
+}
+#ventMousePosition-body{
+	padding-left:5px;
+	background: #2C9EBB;
+	color: #FFFFFF;
+	font: 300 11px/15px helvetica, arial, verdana, sans-serif;
+}
+/*-----------Fin Ventana de posicion Mouse--------------*/
+
+/*----------- Botón Vista Completa ---------------*/
+.zoomExtent {
+	top: 2em;
+	left: .5em;
+}
+
+.zoomExtent button{
+	background-image:url(../img/icozoomExtent.png);
+	background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+/*-----------Fin Botón Vista Completa --------------*/
+
+/*----------- OverviewMap ---------------*/
+
+.ol-overviewmap-box {
+        border: 2px dotted red;
+}
+
+.ol-overviewmap {
+    left: .5em;
+    bottom: 2.9em;
+}
+/*-----------Fin OverviewMap --------------*/
+
+/*-----------div tooltip---------------*/
+.tooltip {
+  position: relative;
+  padding: 3px;
+  background: rgba(50, 64, 78, 0.7);
+  color: white;
+  opacity: 0.8;
+  font-size: 11px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(53, 186, 246, 0.7);
+  width: 320px;
+}
+.tooltipcontent{
+	margin-top: 5px;
+}
+.tbtooltip{
+	border: none;
+	width: 100%;
+}
+.trtooltip{
+	border: none;
+}
+.tdtooltiptit{
+	border: none;
+	width: 40%;
+	font-weight: bold;
+}
+.tdtooltipvalor{
+	border: none;
+	width: 40%;
+}
+.tdpopuptit{
+	border: none;
+	width: 40%;
+	font-weight: bold;
+}
+.tdpopupver{
+	border: none;
+	width: 60%;
+}
+.popuplist {
+  position: relative;
+  padding: 3px;
+  background: rgba(50, 64, 78, 0.7);
+  color: white;
+  opacity: 0.8;
+  white-space: nowrap;
+  font-size: 11px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(53, 186, 246, 0.7);
+  overflow-y: scroll;
+  height: 150px;
+  width: 320px;
+}
+.popup {
+	position: relative;
+  	padding: 3px;
+  	background: rgba(50, 64, 78, 0.7);
+  	color: white;
+  	/*opacity: 0.8;*/
+  	font-size: 11px;
+  	border-width: 1px;
+  	border-style: solid;
+  	border-color: rgba(53, 186, 246, 0.7);
+  	width: 320px;
+}
+.popup:after, .popup:before {
+	top: 100%;
+  	border: solid transparent;
+  	content: " ";
+  	height: 0;
+  	width: 0;
+  	position: absolute;
+  	pointer-events: none;
+}
+.popup:after {
+	border-top-color: rgba(50, 64, 78, 0.7);
+  	border-width: 11px;
+  	left: 11px;
+  	margin-left: -11px;
+}
+.popup:before {
+    border-top-color: rgba(50, 64, 78, 0.7);
+    border-width: 11px;
+    left: 11px;
+    margin-left: -11px;
+}
+.popupcloser {
+	text-decoration: none;
+  	position: absolute;
+  	top: 2px;
+  	right: 8px;
+}
+.popupcloser:after {
+ 	 content: "X";
+ 	 font-weight: bold;
+ 	 color: white;
+}
+.popupback {
+	text-decoration: none;
+  	position: absolute;
+  	top: 2px;
+  	left: 8px;
+}
+.popupback:after {
+ 	 content: "< Anterior";
+ 	 font-weight: bold;
+ 	 color: white;
+}
+.popupcontent{
+	margin-top: 20px;
+}
+.enlace {
+	/*text-decoration: none;*/
+  	/*position: absolute;*/
+	/*font-weight: bold;*/
+	color: white;
+}
+/*-----------fin div tooltip---------------*/
+
+/*-----------Iconos de medición---------------*/
+
+.icoMedirArea {
+    background-image:url(../img/icoBtnMedirArea.png);
+    height:20px !important;
+    width:20px !important;
+}
+.icoMedirDistancia {
+    background-image:url(../img/icoBtnMedirDist.png);
+    height:20px !important;
+    width:20px !important;
+}
+
+/*-----------Iconos de medición---------------*/
+
+/*-----------Resultado de medición---------------*/
+
+.labelMeasureResult{
+    font: 300 13px/15px euphemia,helvetica,arial,verdana;
+    color: #157fcc
+}
+
+.textoAyudaMedir{
+
+    font: 300 13px/15px euphemia,helvetica,arial,verdana;
+    color: #FFFFFF;
+    text-shadow: 0 0 3px #000000;
+}
+
+
+
+/*-----------Resultado de medición---------------*/
+
+/*-----------Add WMS---------------*/
+
+.previsualizar {
+    background-image:url(../img/icoprevisualizar.png);
+    width:28px;
+}
+.previsualizar:hover {background-image:url(../img/icoprevisualizar_over.png);}
+
+
+.añadir {background-image:url(../img/icoanyadir.png);}
+.añadir:hover{background: url(../img/icoanyadir_over.png);}
+
+
+.conectar {background-image:url(../img/icoconectar.png);}
+.conectar:hover {background-image:url(../img/icoconectar_over.png);}
+
+.icoAniadirWMS {
+    background-image:url(../img/icoBtnAniadirWMS.png);
+    height:18px !important;
+    width:18px !important;
+}
+
+.btnAniadirWMS {
+	background-color: #004B70;
+}
+
+/*-----------Add WMS---------------*/
+
+/*-----------Localizar---------------*/
+
+.icoLocalizar {
+    background-image:url(../img/icoBtnLocalizar.png);
+    height:18px !important;
+    width:18px !important;
+}
+
+.btnLocalizar {
+	background-color: #004B70;
+	left:5px;
+}
+
+/*-----------Localizar---------------*/
+
+
+
+/*-----------Ayuda---------------*/
+
+.icoAyuda {
+    background-image:url(../img/icoayuda.png);
+    height:41px !important;
+    width:41px !important;
+}
+
+.icoAyuda:hover {
+	background-image:url(../img/icoayuda_over.png);}
+
+.btnAyuda {
+	background-color: #004B70;
+	float: right;
+}
+
+/*-----------Ayuda---------------*/
+
+/*-----------Leyenda---------------*/
+
+.icoterreno {
+    background-image:url(../img/terreno.png);
+}
+
+.icoconstruccion {
+    background-image:url(../img/construccion.png);
+}
+
+.icocobertura {
+    background-image:url(../img/cobertura.png);
+}
+
+.icounidad {
+    background-image:url(../img/unidad.png);
+}
+
+.icocolombia {
+    background-image:url(../img/colombia.png);
+}
+
+.icodepartamentos{
+    background-image:url(../img/departamentos.png);
+}
+
+.icomunicipios {
+    background-image:url(../img/municipios.png);
+}
+
+/*-----------Leyenda---------------*/
+
+/*-----------Deshabilitar Leyenda---------------*/
+
+.disabled {
+    opacity: 0.6;
+}
+
+/*-----------Deshabilitar Leyenda---------------*/
+
+/*-----------Zoom Slider---------------*/
+
+.ol-control {
+	background-color: rgba(44, 158, 187, 0.6);
+}
+
+.ol-control:hover {
+	background-color: rgba(44, 158, 187, 0.3);
+}
+
+/*-----------Zoom Slider---------------*/
