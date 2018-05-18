@@ -31,8 +31,4 @@ Además de la cartografía que el propio visor proporciona, procedente del servi
 
 Este proyecto está licenciado bajo la licencia [MIT](https://opensource.org/licenses/MIT)
 
-![alt text](WebContent/visorcatastrocol/app/img/PND.jpg "Logo PND")
-![alt text](WebContent/visorcatastrocol/app/img/DNP.png "Logo DNP")
-![alt text](WebContent/visorcatastrocol/app/img/IGAC.png "Logo IGAC")
-![alt text](WebContent/visorcatastrocol/app/img/SNR.png "Logo SNR")
-![alt text](WebContent/visorcatastrocol/app/img/ANT.png "Logo ANT")
+![alt text](WebContent/visorcatastrocol/app/img/Logos.jpg "Logos")
