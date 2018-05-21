@@ -1,7 +1,7 @@
 
 /**
  *
- *crea una ventana con informaciÛn
+ *crea una ventana con informaci√≥n
  *
  **/
 function createVentMousePosition (){
@@ -35,7 +35,7 @@ function createPanelLeft()
 {
 	var myPanelLeft = Ext.create('Ext.panel.Panel',{
 		id: 'leftPanel',
-		title: 'CartografÌa y herramientas',
+		title: 'Cartograf√≠a y herramientas',
 		region: 'west',
 		width : 340,
 		collapsed: false,
@@ -62,7 +62,7 @@ function createPanelLeft()
 					autoScroll : true,
 					lines : true,
 					hideHeaders : true,
-		      		margin: '0 0 0 -5',
+		      			margin: '0 0 0 -5',
 					columns : {
 						header : false,
 						items : [{
@@ -115,165 +115,166 @@ function createPanelLeft()
 					}
 				}]
 			},{
-				title: 'LocalizaciÛn de elementos',
+				title: 'Localizaci√≥n de elementos',
 				width: '100%',
 				border : true,
 				items:[{
 			        xtype: 'form',
-					id:'LocForm',
+				id:'LocForm',
 			        bodyPadding: 10,
 			        layout: 'anchor',
 			        scrollable:true,
 			        width: '100%',
 			        items: [{
-			        	xtype: 'fieldset',
+				    xtype: 'fieldset',
 			            width: '100%',
-			            title: 'B˙squeda progresiva del identificador predial',
+			            title: 'B√∫squeda progresiva del identificador predial',
 			            columnWidth: 0.5,
 			            labelWidth: 75,
 			            labelAlign: 'top',
-						msgTarget: 'under',
+				    msgTarget: 'under',
 			            items: [{
 				            layout: 'column',
-							margin: '10 5 0 5',
-							border: false,
-							items:[{
-								columnWidth: '0.735',
-								border: false,
-								layout: {
-						    		type: 'vbox',
-						    		align: 'center'
-								},
-								items:[{
+					    margin: '10 5 0 5',
+					    border: false,
+					    items:[{
+						columnWidth: '0.735',
+						border: false,
+						layout: {
+						type: 'vbox',
+						align: 'center'
+						},
+						items:[{
 				            		xtype: 'combobox',
-									name: 'ComboDepartamento',
-									fieldLabel: 'Selecciona el Departamento',
-									labelAlign: 'top',
-									msgTarget: 'under',
-									id: 'ComboDepartamento',
-									width: '100%',
-								    queryMode: 'local',
-								    displayField: 'name',
-								    valueField: 'cod',
-								    store: Ext.create('Ext.data.Store', {
-											    	fields: ['name', 'cod']
-									}),
-									listeners:{
-								    	render: function (thisCombo, eOpts)
-								    	{
-	
-								    		var arr = sourceLayerDepartamentos.getFeatures();
-	
-								    		var arrAuxname = [];
-	
-								    		for (var i = 0; i < arr.length; i++)
-								    		{
-								    			//arrAuxname.push({name: arr[i].get('departamento'), cod: arr[i].get('departamento')});
-								    			arrAuxname.push({name: arr[i].get('dpto_cnmbr'), cod: arr[i].get('dpto_ccdgo')});
-	
-								    		}
-								    		thisCombo.getStore().insert(0, arrAuxname);
-	
-								    	},
-								    	select: function (thisCombo, record, eOpts){
-	
-									    	Ext.getCmp('Identificador').setValue("");
-											Ext.getCmp('Identificador').setDisabled(true);
+							name: 'ComboDepartamento',
+							fieldLabel: 'Selecciona el Departamento',
+							labelAlign: 'top',
+							msgTarget: 'under',
+							id: 'ComboDepartamento',
+							width: '100%',
+							queryMode: 'local',
+							displayField: 'name',
+							valueField: 'cod',
+							store: Ext.create('Ext.data.Store', {
+								fields: ['name', 'cod']
+							}),
+							listeners:{
+								render: function (thisCombo, eOpts)
+								{
 
-											Ext.getCmp('ComboMunicipio').setDisabled(false);
-											Ext.getCmp('btncentrardep').setDisabled(false);
+									var arr = sourceLayerDepartamentos.getFeatures();
 
-											cqlfilter = 'CQL_FILTER=dpto_dpto_=' + "'" + thisCombo.getValue() + "'";
+									var arrAuxname = [];
 
-											propertyName = 'propertyName=mpio_cnmbr,mpio_ccdgo';
+									for (var i = 0; i < arr.length; i++)
+									{
+										//arrAuxname.push({name: arr[i].get('departamento'), cod: arr[i].get('departamento')});
+										arrAuxname.push({name: arr[i].get('dpto_cnmbr'), cod: arr[i].get('dpto_ccdgo')});
 
-											typeNameLayerMun = 'typeName=' + prefijo + ':' + capaMunicipios;
+									}
+									thisCombo.getStore().insert(0, arrAuxname);
 
-											ordenarPor = 'sortBy=mpio_cnmbr';
+								},
+								select: function (thisCombo, record, eOpts){
 
-											Ext.getCmp('ComboMunicipio').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayerMun + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
+									Ext.getCmp('Identificador').setValue("");
+										Ext.getCmp('Identificador').setDisabled(true);
 
-											Ext.getCmp('ComboMunicipio').getStore().load();
-										},
-										change: function(){
-	
-											Ext.getCmp('ComboMunicipio').setValue("");
-											Ext.getCmp('ComboZona').setValue("");
-											Ext.getCmp('ComboSector').setValue("");
-											Ext.getCmp('ComboComuna').setValue("");
-											Ext.getCmp('ComboBarrio').setValue("");
-											Ext.getCmp('ComboManzana').setValue("");
-											Ext.getCmp('ComboPredio').setValue("");
-										}
-					    			}
+										Ext.getCmp('ComboMunicipio').setDisabled(false);
+										Ext.getCmp('btncentrardep').setDisabled(false);
+
+										cqlfilter = 'CQL_FILTER=dpto_dpto_=' + "'" + thisCombo.getValue() + "'";
+
+										propertyName = 'propertyName=mpio_cnmbr,mpio_ccdgo';
+
+										typeNameLayerMun = 'typeName=' + prefijo + ':' + capaMunicipios;
+
+										ordenarPor = 'sortBy=mpio_cnmbr';
+
+										Ext.getCmp('ComboMunicipio').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayerMun + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
+
+										Ext.getCmp('ComboMunicipio').getStore().load();
+								},
+								change: function(){
+
+									Ext.getCmp('ComboMunicipio').setValue("");
+									Ext.getCmp('ComboZona').setValue("");
+									Ext.getCmp('ComboSector').setValue("");
+									Ext.getCmp('ComboComuna').setValue("");
+									Ext.getCmp('ComboBarrio').setValue("");
+									Ext.getCmp('ComboManzana').setValue("");
+									Ext.getCmp('ComboPredio').setValue("");
+								}
+							}
 					            }]
-							},{ columnWidth: '0.265',
-								border: false,
-								layout: {
-				    				type: 'vbox',
-				    				align: 'center'
-								},
-								items:[{
-		            					xtype: 'button',
-		    							text: 'Centrar',
-		    							disabled: true,
-		    							id: 'btncentrardep',
-		    							margin: '26 15 0 0',
-			    						listeners: {
-		    						    	click: function(thisbutton, e, eOpts){
-		    						    		var features = sourceLayerDepartamentos.getFeatures();
-		    						    		var cod = Ext.getCmp('ComboDepartamento').getValue();
-	
-		    						    		for (var i = 0; i < features.length; i++) {
-		    						    			if (features[i].getProperties().dpto_ccdgo == cod){
-		    						    				var extent = features[i].getGeometry();
-		    						    				map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
-		    						    			}
-		    						    		}
-		    								}
-							    		}
-								}]
-							}]
+						},{ 
+						     columnWidth: '0.265',
+						     border: false,
+						     layout: {
+							type: 'vbox',
+							align: 'center'
+						     },
+						     items:[{
+							xtype: 'button',
+							text: 'Centrar',
+							disabled: true,
+							id: 'btncentrardep',
+							margin: '26 15 0 0',
+							listeners: {
+							click: function(thisbutton, e, eOpts){
+								var features = sourceLayerDepartamentos.getFeatures();
+								var cod = Ext.getCmp('ComboDepartamento').getValue();
+
+								for (var i = 0; i < features.length; i++) {
+									if (features[i].getProperties().dpto_ccdgo == cod){
+										var extent = features[i].getGeometry();
+										map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
+									}
+								}
+								}
+							}
+						     }]
+						}]
 						},{
-				        	layout: 'column',
-							margin: '0 5 0 5',
+						    layout: 'column',
+						    margin: '0 5 0 5',
+						    border: false,
+						    items:[{
+							columnWidth: '0.735',
 							border: false,
+							layout: {
+								type: 'vbox',
+								align: 'center'
+							},
 							items:[{
-								columnWidth: '0.735',
-								border: false,
-								layout: {
-						    		type: 'vbox',
-						    		align: 'center'
-								},
-								items:[{
-									xtype: 'combobox',
-									name: 'ComboMunicipio',
-									id: 'ComboMunicipio',
-									fieldLabel: 'Selecciona el Municipio',
-									labelAlign: 'top',
-									msgTarget: 'under',
-									disabled: true,
-									width: '100%',
-								    store: Ext.create('Ext.data.Store', {
-								    	id: 'storeLocMun',
-								    	model: 'modelLocMun',
-								    	autoLoad: false,
-								    	proxy: {
-								    		type: 'ajax',
-								    		url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayerMun  + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
-								    		reader: {
-								    			type: 'json',
-								    			rootProperty: 'features'
-								    		}
-								    	}
-								    }),
-								    displayField: 'nbMun',
-								    valueField: 'codMun',
-								    triggerAction: "all",
-								    queryMode: 'local',
-								    typeAhead: true,
-								    editable: true,
-								    listeners:{
+								xtype: 'combobox',
+								name: 'ComboMunicipio',
+								id: 'ComboMunicipio',
+								fieldLabel: 'Selecciona el Municipio',
+								labelAlign: 'top',
+								msgTarget: 'under',
+								disabled: true,
+								width: '100%',
+								store: Ext.create('Ext.data.Store', {
+									id: 'storeLocMun',
+									model: 'modelLocMun',
+									autoLoad: false,
+									proxy: {
+										type: 'ajax',
+										url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayerMun  + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
+										reader: {
+											type: 'json',
+											rootProperty: 'features'
+										}
+									}
+								}),
+							        displayField: 'nbMun',
+							        valueField: 'codMun',
+							        triggerAction: "all",
+							        queryMode: 'local',
+							        typeAhead: true,
+							        editable: true,
+							        listeners:{
 								    	beforequery: function (record) {
 								    		record.query = new RegExp(record.query, 'i');
 								    		record.forceAll = true;
@@ -324,30 +325,30 @@ function createPanelLeft()
 
 											 	});
 							    		},
-										change: function(){
-	
-											Ext.getCmp('ComboZona').setValue("");
-											Ext.getCmp('ComboSector').setValue("");
-											Ext.getCmp('ComboComuna').setValue("");
-											Ext.getCmp('ComboBarrio').setValue("");
-											Ext.getCmp('ComboManzana').setValue("");
-											Ext.getCmp('ComboPredio').setValue("");
-										}
+									change: function(){
+
+										Ext.getCmp('ComboZona').setValue("");
+										Ext.getCmp('ComboSector').setValue("");
+										Ext.getCmp('ComboComuna').setValue("");
+										Ext.getCmp('ComboBarrio').setValue("");
+										Ext.getCmp('ComboManzana').setValue("");
+										Ext.getCmp('ComboPredio').setValue("");
+									}
 						    		}
 					           }]
-							 },{ 	
-						 		columnWidth: '0.265',
-					 		 	border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
+						},{ 	
+						    columnWidth: '0.265',
+						    border: false,
+						    layout: {
+							    type: 'vbox',
+							    align: 'center'
+						    },
+						    items:[{
 	            					xtype: 'button',
-	    							text: 'Centrar',
-	    							id: 'btncentrarmun',
-	    							disabled: true,
-	    							margin: '26 15 0 0',
+							text: 'Centrar',
+							id: 'btncentrarmun',
+							disabled: true,
+							margin: '26 15 0 0',
 	    						    listeners: {
     						    		click: function(thisbutton, e, eOpts){
     						    			var featuresDep = sourceLayerDepartamentos.getFeatures();
@@ -360,39 +361,39 @@ function createPanelLeft()
 	    						    				map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
 	    						    			}
 	    						    		}
-										}
-						    		}
-								}]
-							}]
+								}
+							     }
+						    }]
+						}]
 				        },{
-		            		xtype: 'combobox',
-							name: 'ComboZona',
-							id: 'ComboZona',
-							fieldLabel: 'Selecciona la Zona',
-							labelAlign: 'top',
-							msgTarget: 'under',
-							disabled: true,
-							width: '100%',
-						    store: Ext.create('Ext.data.Store', {
-									id: 'storeLocZona',
-									model: 'modelLocZona',
-									autoLoad: false,
-									proxy: {
-										type: 'ajax',
-										url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
-										reader: {
-											type: 'json',
-											rootProperty: 'features'
-										}
-									}
-							}),
-						    displayField: 'nbZona',
-						    valueField: 'idZona',
-						    triggerAction: "all",
-						    queryMode: 'local',
-						    typeAhead: true,
-						    editable: true,
-						    listeners:{
+					    xtype: 'combobox',
+					    name: 'ComboZona',
+					    id: 'ComboZona',
+					    fieldLabel: 'Selecciona la Zona',
+					    labelAlign: 'top',
+					    msgTarget: 'under',
+					    disabled: true,
+					    width: '100%',
+					    store: Ext.create('Ext.data.Store', {
+						id: 'storeLocZona',
+						model: 'modelLocZona',
+						autoLoad: false,
+						proxy: {
+							type: 'ajax',
+							url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
+							reader: {
+								type: 'json',
+								rootProperty: 'features'
+							}
+						}
+					    }),
+					    displayField: 'nbZona',
+					    valueField: 'idZona',
+					    triggerAction: "all",
+					    queryMode: 'local',
+					    typeAhead: true,
+					    editable: true,
+					    listeners:{
 						    	beforequery: function (record) {
 						    		record.query = new RegExp(record.query, 'i');
 						    		record.forceAll = true;
@@ -432,254 +433,672 @@ function createPanelLeft()
 						    	},
 						    	change: function(){
 
-										Ext.getCmp('ComboSector').setValue("");
+									Ext.getCmp('ComboSector').setValue("");
+									Ext.getCmp('ComboComuna').setValue("");
+									Ext.getCmp('ComboBarrio').setValue("");
+									Ext.getCmp('ComboManzana').setValue("");
+									Ext.getCmp('ComboPredio').setValue("");
+							}
+				    		}
+			          	},{
+				            layout: 'column',
+					    margin: '10 5 0 5',
+					    border: false,
+					    items:[{
+						columnWidth: '0.735',
+						border: false,
+						layout: {
+						    type: 'vbox',
+						    align: 'center'
+						},
+						items:[{
+							xtype: 'combobox',
+							name: 'ComboSector',
+							id: 'ComboSector',
+							fieldLabel: 'Selecciona el Sector',
+							labelAlign: 'top',
+							msgTarget: 'under',
+							disabled: true,
+							width: '100%',
+							store: Ext.create('Ext.data.Store', {
+									id: 'storeLocSector',
+									model: 'modelLocSector',
+									autoLoad: false,
+									proxy: {
+										type: 'ajax',
+										url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
+										reader: {
+											type: 'json',
+											rootProperty: 'features'
+										}
+									}
+							 }),
+							 displayField: 'idSector',
+							 valueField: 'idSector',
+							 triggerAction: "all",
+							 queryMode: 'local',
+							 typeAhead: true,
+							 editable: true,
+							 listeners:{
+								beforequery: function (record) {
+									record.query = new RegExp(record.query, 'i');
+									record.forceAll = true;
+								},
+								select: function(thisCombo, record, eOpts){
+									Ext.getCmp('ComboComuna').setDisabled(false);
+									Ext.getCmp('btncentrarsec').setDisabled(false);
+
+										cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + thisCombo.getValue() + "'";
+										typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
+										ordenarPor = 'sortBy=comuna';
+										propertyName = 'propertyName=departamento,municipio,zona,sector,comuna';
+
+										Ext.getCmp('ComboComuna').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
+
+										var arr = [];
+										Ext.getCmp('ComboComuna').getStore().load(function(){
+										    this.each(function(record){
+											var roles = record.get('idComuna');
+											arr.push(record.get('idComuna'));
+										     });
+
+										    function unique(value, index, self) {
+											return self.indexOf(value) === index;
+										    }
+
+											var iduniq = arr.filter(unique);
+											var item = [];
+											for (i=0;i<iduniq.length;i++){
+												item.push({idComuna:iduniq[i]});
+											}
+
+											Ext.getCmp('ComboComuna').getStore().removeAll();
+											Ext.getCmp('ComboComuna').getStore().setData(item);
+										 });
+								},
+								change: function(){
 										Ext.getCmp('ComboComuna').setValue("");
 										Ext.getCmp('ComboBarrio').setValue("");
 										Ext.getCmp('ComboManzana').setValue("");
 										Ext.getCmp('ComboPredio').setValue("");
 								}
-				    		}
-			          	},{
-				            layout: 'column',
-							margin: '10 5 0 5',
-							border: false,
-							items:[{
-								columnWidth: '0.735',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
-					            		xtype: 'combobox',
-										name: 'ComboSector',
-										id: 'ComboSector',
-										fieldLabel: 'Selecciona el Sector',
-										labelAlign: 'top',
-										msgTarget: 'under',
-										disabled: true,
-										width: '100%',
-									    store: Ext.create('Ext.data.Store', {
-										    	id: 'storeLocSector',
-										    	model: 'modelLocSector',
-										    	autoLoad: false,
-										    	proxy: {
-										    		type: 'ajax',
-										    		url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
-										    		reader: {
-										    			type: 'json',
-										    			rootProperty: 'features'
-										    		}
-										    	}
-									    }),
-									    displayField: 'idSector',
-									    valueField: 'idSector',
-									    triggerAction: "all",
-									    queryMode: 'local',
-									    typeAhead: true,
-									    editable: true,
-									    listeners:{
-									    	beforequery: function (record) {
-									    		record.query = new RegExp(record.query, 'i');
-									    		record.forceAll = true;
-									    	},
-									    	select: function(thisCombo, record, eOpts){
-										    	Ext.getCmp('ComboComuna').setDisabled(false);
-										    	Ext.getCmp('btncentrarsec').setDisabled(false);
+							}
+						    }]
+						},{ 	
+						    columnWidth: '0.265',
+						    border: false,
+						    layout: {
+						    	type: 'vbox',
+						   	align: 'center'
+						    },
+						    items:[{
+							xtype: 'button',
+							text: 'Centrar',
+							disabled: true,
+							id: 'btncentrarsec',
+							margin: '26 15 0 0',
+							listeners: {
+								click: function(thisbutton, e, eOpts){
+										var features;
+										var url = Ext.getCmp('ComboComuna').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna', '');
 
-												cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + thisCombo.getValue() + "'";
-												typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
-												ordenarPor = 'sortBy=comuna';
-												propertyName = 'propertyName=departamento,municipio,zona,sector,comuna';
-
-												Ext.getCmp('ComboComuna').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
-
-												var arr = [];
-												Ext.getCmp('ComboComuna').getStore().load(function(){
-												    this.each(function(record){
-												        var roles = record.get('idComuna');
-												        arr.push(record.get('idComuna'));
-												     });
-
-												    function unique(value, index, self) {
-												        return self.indexOf(value) === index;
-												    }
-
-													var iduniq = arr.filter(unique);
-													var item = [];
-													for (i=0;i<iduniq.length;i++){
-														item.push({idComuna:iduniq[i]});
-													}
-
-													Ext.getCmp('ComboComuna').getStore().removeAll();
-													Ext.getCmp('ComboComuna').getStore().setData(item);
-												 });
-									    	},
-									    	change: function(){
-													Ext.getCmp('ComboComuna').setValue("");
-													Ext.getCmp('ComboBarrio').setValue("");
-													Ext.getCmp('ComboManzana').setValue("");
-													Ext.getCmp('ComboPredio').setValue("");
+										Ext.Ajax.request({
+											url: url,
+											async: false,
+											method: 'POST',
+											success: function(response, opts) {
+												features = new ol.format.GeoJSON().readFeatures(response.responseText);
 											}
-							    		}
-						            }]
-							},{ 	
-								columnWidth: '0.265',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
-	            						xtype: 'button',
-		    							text: 'Centrar',
-		    							disabled: true,
-		    							id: 'btncentrarsec',
-		    							margin: '26 15 0 0',
-		    						    listeners: {
-		    						    	click: function(thisbutton, e, eOpts){
-									    			var features;
-									    			var url = Ext.getCmp('ComboComuna').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna', '');
-	
-													Ext.Ajax.request({
-														url: url,
-														async: false,
-														method: 'POST',
-														success: function(response, opts) {
-															features = new ol.format.GeoJSON().readFeatures(response.responseText);
-														}
-													});
-	
-													var xmin = features[0].getGeometry().getExtent()[0];
-			    						    		var ymin = features[0].getGeometry().getExtent()[1];
-			    						    		var xmax = features[0].getGeometry().getExtent()[2];
-			    						    		var ymax = features[0].getGeometry().getExtent()[3];
-		
-			    						    		for (var i = 0; i < features.length; i++) {
-			    						    			var extentini = features[i].getGeometry().getExtent();
-			    						    			if (extentini[0] < xmin) {
-			    						    				xmin = extentini[0];
-			    						    			}
-			    						    			if (extentini[1] < ymin) {
-			    						    				ymin = extentini[1];
-			    						    			}
-			    						    			if (extentini[2] > xmax) {
-			    						    				xmax = extentini[2];
-			    						    			}
-			    						    			if (extentini[3] > ymax) {
-			    						    				ymax = extentini[3];
-			    						    			}
-			    						    		}
-		
-			    						    		var extent = [xmin, ymin, xmax, ymax];
-			    						    		map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
-	    								 }
-    						    	  }
-								}]
+										});
+
+										var xmin = features[0].getGeometry().getExtent()[0];
+										var ymin = features[0].getGeometry().getExtent()[1];
+										var xmax = features[0].getGeometry().getExtent()[2];
+										var ymax = features[0].getGeometry().getExtent()[3];
+
+										for (var i = 0; i < features.length; i++) {
+											var extentini = features[i].getGeometry().getExtent();
+											if (extentini[0] < xmin) {
+												xmin = extentini[0];
+											}
+											if (extentini[1] < ymin) {
+												ymin = extentini[1];
+											}
+											if (extentini[2] > xmax) {
+												xmax = extentini[2];
+											}
+											if (extentini[3] > ymax) {
+												ymax = extentini[3];
+											}
+										}
+
+										var extent = [xmin, ymin, xmax, ymax];
+										map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
+								 }
+							     }
 							}]
+						}]
 			           	 },{
-		            		 layout: 'column',
-							 margin: '10 5 0 5',
-							 border: false,
-							 items:[{
-								 columnWidth: '0.735',
-								 border: false,
-								 layout: {
-								    type: 'vbox',
-								    align: 'center'
-								 },
-								 items:[{
-				            			xtype: 'combobox',
-										name: 'ComboComuna',
-										id: 'ComboComuna',
-										fieldLabel: 'Selecciona la Comuna',
-										labelAlign: 'top',
-										msgTarget: 'under',
-										disabled: true,
-										width: '100%',
-										store: Ext.create('Ext.data.Store', {
-										    	id: 'storeLocComuna',
-										    	model: 'modelLocComuna',
-										    	autoLoad: false,
-										    	proxy: {
-										    		type: 'ajax',
-										    		url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
-										    		reader: {
-										    			type: 'json',
-										    			rootProperty: 'features'
-										    		}
-										    	}
-									    }),
-									    displayField: 'idComuna',
-									    valueField: 'idComuna',
-									    triggerAction: "all",
-									    queryMode: 'local',
-									    typeAhead: true,
-									    editable: true,
-									    listeners:{
-									    	beforequery: function (record) {
-									    		record.query = new RegExp(record.query, 'i');
-									    		record.forceAll = true;
-									    	},
-									    	select: function(thisCombo, record, eOpts){
-										    	Ext.getCmp('ComboBarrio').setDisabled(false);
-										    	Ext.getCmp('btncentrarcom').setDisabled(false);
-
-												cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + thisCombo.getValue() + "'";
-												typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
-												ordenarPor = 'sortBy=barrio';
-												propertyName = 'propertyName=departamento,municipio,zona,sector,comuna,barrio';
-
-												Ext.getCmp('ComboBarrio').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
-
-												var arr = [];
-												Ext.getCmp('ComboBarrio').getStore().load(function(){
-													  this.each(function(record){
-													      var roles = record.get('idBarrio');
-													      arr.push(record.get('idBarrio'));
-													   });
-
-													  function unique(value, index, self) {
-													       return self.indexOf(value) === index;
-													  }
-
-													  var iduniq = arr.filter(unique);
-													  var item = [];
-													  for (i=0;i<iduniq.length;i++){
-														  item.push({idBarrio:iduniq[i]});
-													  }
-
-													  Ext.getCmp('ComboBarrio').getStore().removeAll();
-
-													  Ext.getCmp('ComboBarrio').getStore().setData(item);
-
-												});
-									    	},
-									    	change: function(){
-
-																Ext.getCmp('ComboBarrio').setValue("");
-																Ext.getCmp('ComboManzana').setValue("");
-																Ext.getCmp('ComboPredio').setValue("");
-														}
-						    			}
-				            	}]
-							},{ 
-								columnWidth: '0.265',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
+		            		     layout: 'column',
+					     margin: '10 5 0 5',
+					     border: false,
+					     items:[{
+						 columnWidth: '0.735',
+						 border: false,
+						 layout: {
+						    type: 'vbox',
+						    align: 'center'
+						 },
+						 items:[{
+							xtype: 'combobox',
+							name: 'ComboComuna',
+							id: 'ComboComuna',
+							fieldLabel: 'Selecciona la Comuna',
+							labelAlign: 'top',
+							msgTarget: 'under',
+							disabled: true,
+							width: '100%',
+							store: Ext.create('Ext.data.Store', {
+								id: 'storeLocComuna',
+								model: 'modelLocComuna',
+								autoLoad: false,
+								proxy: {
+									type: 'ajax',
+									url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
+									reader: {
+										type: 'json',
+										rootProperty: 'features'
+									}
+								}
+						    	}),
+							displayField: 'idComuna',
+							valueField: 'idComuna',
+							triggerAction: "all",
+							queryMode: 'local',
+							typeAhead: true,
+							editable: true,
+							listeners:{
+								beforequery: function (record) {
+									record.query = new RegExp(record.query, 'i');
+									record.forceAll = true;
 								},
-								items:[{
-		            					xtype: 'button',
-		    							text: 'Centrar',
-		    							disabled: true,
-		    							id: 'btncentrarcom',
-		    							margin: '26 15 0 0',
-		    						    listeners: {
-		    						    	click: function(thisbutton, e, eOpts){
-								    			var features;
-								    			var url = Ext.getCmp('ComboBarrio').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna%2Cbarrio', '');
+								select: function(thisCombo, record, eOpts){
+									Ext.getCmp('ComboBarrio').setDisabled(false);
+									Ext.getCmp('btncentrarcom').setDisabled(false);
+
+										cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + thisCombo.getValue() + "'";
+										typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
+										ordenarPor = 'sortBy=barrio';
+										propertyName = 'propertyName=departamento,municipio,zona,sector,comuna,barrio';
+
+										Ext.getCmp('ComboBarrio').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
+
+										var arr = [];
+										Ext.getCmp('ComboBarrio').getStore().load(function(){
+											  this.each(function(record){
+											      var roles = record.get('idBarrio');
+											      arr.push(record.get('idBarrio'));
+											   });
+
+											  function unique(value, index, self) {
+											       return self.indexOf(value) === index;
+											  }
+
+											  var iduniq = arr.filter(unique);
+											  var item = [];
+											  for (i=0;i<iduniq.length;i++){
+												  item.push({idBarrio:iduniq[i]});
+											  }
+
+											  Ext.getCmp('ComboBarrio').getStore().removeAll();
+
+											  Ext.getCmp('ComboBarrio').getStore().setData(item);
+
+										});
+								},
+								change: function(){
+
+										Ext.getCmp('ComboBarrio').setValue("");
+										Ext.getCmp('ComboManzana').setValue("");
+										Ext.getCmp('ComboPredio').setValue("");
+								}
+							}
+				            	}]
+					},{ 
+						columnWidth: '0.265',
+						border: false,
+						layout: {
+						    type: 'vbox',
+						    align: 'center'
+						},
+						items:[{
+							xtype: 'button',
+							text: 'Centrar',
+							disabled: true,
+							id: 'btncentrarcom',
+							margin: '26 15 0 0',
+							listeners: {
+							click: function(thisbutton, e, eOpts){
+								var features;
+								var url = Ext.getCmp('ComboBarrio').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna%2Cbarrio', '');
+
+								Ext.Ajax.request({
+									url: url,
+									async: false,
+									method: 'POST',
+									success: function(response, opts) {
+										features = new ol.format.GeoJSON().readFeatures(response.responseText);
+									}
+								});
+
+								var xmin = features[0].getGeometry().getExtent()[0];
+								var ymin = features[0].getGeometry().getExtent()[1];
+								var xmax = features[0].getGeometry().getExtent()[2];
+								var ymax = features[0].getGeometry().getExtent()[3];
+
+								for (var i = 0; i < features.length; i++) {
+									var extentini = features[i].getGeometry().getExtent();
+
+									if (extentini[0] < xmin) {
+										xmin = extentini[0];
+									}
+									if (extentini[1] < ymin) {
+										ymin = extentini[1];
+									}
+									if (extentini[2] > xmax) {
+										xmax = extentini[2];
+									}
+									if (extentini[3] > ymax) {
+										ymax = extentini[3];
+									}
+								}
+
+								var extent = [xmin, ymin, xmax, ymax];
+
+								map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
+
+							}
+
+							}
+						}]
+					}]
+			           	},{
+				             layout: 'column',
+					     margin: '10 5 0 5',
+					     border: false,
+					     items:[{
+						columnWidth: '0.735',
+						border: false,
+						layout: {
+						    type: 'vbox',
+						    align: 'center'
+						},
+						items:[{
+							xtype: 'combobox',
+							name: 'ComboBarrio',
+							id: 'ComboBarrio',
+							fieldLabel: 'Selecciona el Barrio',
+							labelAlign: 'top',
+							msgTarget: 'under',
+							disabled: true,
+							width: '100%',
+							store: Ext.create('Ext.data.Store', {
+								id: 'storeLocBarrio',
+								model: 'modelLocBarrio',
+								autoLoad: false,
+								proxy: {
+									type: 'ajax',
+									url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
+									reader: {
+										type: 'json',
+										rootProperty: 'features'
+									}
+								}
+							}),
+						        displayField: 'idBarrio',
+						        valueField: 'idBarrio',
+						        triggerAction: "all",
+						        queryMode: 'local',
+						        typeAhead: true,
+						        editable: true,
+						        listeners:{
+								beforequery: function (record) {
+									record.query = new RegExp(record.query, 'i');
+									record.forceAll = true;
+								},
+								select: function(thisCombo, record, eOpts){
+									Ext.getCmp('ComboManzana').setDisabled(false);
+									Ext.getCmp('btncentrarbarr').setDisabled(false);
+
+										cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + Ext.getCmp('ComboComuna').getValue() + "'%20AND%20" + 'barrio=' + "'" + thisCombo.getValue() + "'";
+										typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
+										propertyName = 'propertyName=departamento,municipio,zona,sector,comuna,barrio,manzana';
+										ordenarPor = 'sortBy=manzana';
+
+										Ext.getCmp('ComboManzana').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
+
+										var arr = [];
+										Ext.getCmp('ComboManzana').getStore().load(function(){
+											  this.each(function(record){
+											      var roles = record.get('idManzana');
+											      arr.push(record.get('idManzana'));
+											   });
+
+											  function unique(value, index, self) {
+											       return self.indexOf(value) === index;
+											  }
+
+											  var iduniq = arr.filter(unique);
+											  var item = [];
+											  for (i=0;i<iduniq.length;i++){
+												  item.push({idManzana:iduniq[i]});
+											  }
+
+											  Ext.getCmp('ComboManzana').getStore().removeAll();
+											  Ext.getCmp('ComboManzana').getStore().setData(item);
+
+										});
+								},
+								change: function(){
+										Ext.getCmp('ComboManzana').setValue("");
+										Ext.getCmp('ComboPredio').setValue("");
+								}
+							}
+					            }]
+						},{ 
+							columnWidth: '0.265',
+							border: false,
+							layout: {
+							    type: 'vbox',
+							    align: 'center'
+							},
+							items:[{
+            							xtype: 'button',
+	    							text: 'Centrar',
+	    							disabled: true,
+	    							id: 'btncentrarbarr',
+	    							margin: '26 15 0 0',
+    						    		listeners: {
+									click: function(thisbutton, e, eOpts){
+										var features;
+										var url = Ext.getCmp('ComboManzana').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna%2Cbarrio%2Cmanzana', '');
+
+										Ext.Ajax.request({
+											url: url,
+											async: false,
+											method: 'POST',
+											success: function(response, opts) {
+												features = new ol.format.GeoJSON().readFeatures(response.responseText);
+
+											}
+										});
+
+										var xmin = features[0].getGeometry().getExtent()[0];
+										var ymin = features[0].getGeometry().getExtent()[1];
+										var xmax = features[0].getGeometry().getExtent()[2];
+										var ymax = features[0].getGeometry().getExtent()[3];
+
+										for (var i = 0; i < features.length; i++) {
+											var extentini = features[i].getGeometry().getExtent();
+											if (extentini[0] < xmin) {
+												xmin = extentini[0];
+											}
+											if (extentini[1] < ymin) {
+												ymin = extentini[1];
+											}
+											if (extentini[2] > xmax) {
+												xmax = extentini[2];
+											}
+											if (extentini[3] > ymax) {
+												ymax = extentini[3];
+											}
+										}
+
+										var extent = [xmin, ymin, xmax, ymax];
+
+										map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
+									}
+    						    		}
+							}]
+						}]
+				           	
+				        },{
+				            layout: 'column',
+					    margin: '10 5 0 5',
+					    border: false,
+					    items:[{
+						columnWidth: '0.735',
+						border: false,
+						layout: {
+						    type: 'vbox',
+						    align: 'center'
+						},
+						items:[{
+							xtype: 'combobox',
+							name: 'ComboManzana',
+							id: 'ComboManzana',
+							fieldLabel: 'Selecciona la Manzana o Vereda',
+							labelAlign: 'top',
+							msgTarget: 'under',
+							disabled: true,
+							width: '100%',
+							store: Ext.create('Ext.data.Store', {
+								id: 'storeLocManzana',
+								model: 'modelLocManzana',
+								autoLoad: false,
+								proxy: {
+									type: 'ajax',
+									url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
+									reader: {
+										type: 'json',
+										rootProperty: 'features'
+									}
+								}
+							}),
+							displayField: 'idManzana',
+							valueField: 'idManzana',
+							triggerAction: "all",
+							queryMode: 'local',
+							typeAhead: true,
+							editable: true,
+							listeners:{
+								beforequery: function (record) {
+									record.query = new RegExp(record.query, 'i');
+									record.forceAll = true;
+								},
+								select: function(thisCombo, record, eOpts){
+
+									Ext.getCmp('ComboPredio').setDisabled(false);
+									Ext.getCmp('btncentrarman').setDisabled(false);
+
+										cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + Ext.getCmp('ComboComuna').getValue() + "'%20AND%20" + 'barrio=' + "'" + Ext.getCmp('ComboBarrio').getValue() + "'%20AND%20" + 'manzana=' + "'" + thisCombo.getValue() + "'";
+										typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
+										propertyName = 'propertyName=departamento,municipio,zona,sector,comuna,barrio,manzana,predio';
+
+										Ext.getCmp('ComboPredio').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPorNumPredial + '&' + propertyName);
+
+										var arr = [];
+										Ext.getCmp('ComboPredio').getStore().load(function(){
+												  this.each(function(record){
+												      var roles = record.get('idPredio');
+												      arr.push(record.get('idPredio'));
+
+												   });
+
+												  function unique(value, index, self) {
+												       return self.indexOf(value) === index;
+												  }
+
+												  var iduniq = arr.filter(unique);
+												  var item = [];
+												  for (i=0;i<iduniq.length;i++){
+													  item.push({idPredio:iduniq[i]});
+												  }
+
+												  Ext.getCmp('ComboPredio').getStore().removeAll();
+												  Ext.getCmp('ComboPredio').getStore().setData(item);
+
+										});
+								},
+								change: function(){
+										Ext.getCmp('ComboPredio').setValue("");
+								}
+							}
+					            }]
+						},{ 
+							columnWidth: '0.265',
+							border: false,
+							layout: {
+							    type: 'vbox',
+							    align: 'center'
+							},
+							items:[{
+								xtype: 'button',
+								text: 'Centrar',
+								disabled: true,
+								id: 'btncentrarman',
+								margin: '26 15 0 0',
+								listeners: {
+								    click: function(thisbutton, e, eOpts){
+									var features;
+									var url = Ext.getCmp('ComboPredio').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna%2Cbarrio%2Cmanzana%2Cpredio', '');;
+
+									Ext.Ajax.request({
+										url: url,
+										async: false,
+										method: 'POST',
+										success: function(response, opts) {
+											features = new ol.format.GeoJSON().readFeatures(response.responseText);
+										}
+									});
+
+									var xmin = features[0].getGeometry().getExtent()[0];
+									var ymin = features[0].getGeometry().getExtent()[1];
+									var xmax = features[0].getGeometry().getExtent()[2];
+									var ymax = features[0].getGeometry().getExtent()[3];
+
+									for (var i = 0; i < features.length; i++) {
+										var extentini = features[i].getGeometry().getExtent();
+										if (extentini[0] < xmin) {
+											xmin = extentini[0];
+										}
+										if (extentini[1] < ymin) {
+											ymin = extentini[1];
+										}
+										if (extentini[2] > xmax) {
+											xmax = extentini[2];
+										}
+										if (extentini[3] > ymax) {
+											ymax = extentini[3];
+										}
+									}
+
+									var extent = [xmin, ymin, xmax, ymax];
+
+									map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
+								    }
+	    						    	}
+							}]
+						}]
+					},{
+					    xtype: 'combobox',
+					    name: 'ComboPredio',
+					    id: 'ComboPredio',
+				    	    fieldLabel: 'Selecciona el Predio',
+					    labelAlign: 'top',
+				            margin:'0 0 10 0',
+					    msgTarget: 'under',
+					    disabled: true,
+				            width: '100%',
+					    store: Ext.create('Ext.data.Store', {
+							id: 'storeLocPredio',
+							model: 'modelLocPredio',
+							autoLoad: false,
+							proxy: {
+								type: 'ajax',
+								url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPorNumPredial,
+								reader: {
+									type: 'json',
+									rootProperty: 'features'
+								}
+							}
+					    }),
+					    displayField: 'idPredio',
+					    valueField: 'idPredio',
+					    triggerAction: "all",
+					    queryMode: 'local',
+					    typeAhead: true,
+					    editable: true,
+					    listeners:{
+						beforequery: function (record) {
+							record.query = new RegExp(record.query, 'i');
+							record.forceAll = true;
+						},
+						select: function(thisCombo, record, eOpts){
+							Ext.getCmp('Buscar').setDisabled(false);
+						}
+					    }
+			          	}]
+			    	},{
+	            		    xtype: 'fieldset',
+				    width: '100%',
+				    title: 'B√∫squeda directa del identificador predial',
+				    columnWidth: 0.5,
+				    labelWidth: 75,
+				    labelAlign: 'top',
+				    msgTarget: 'under',
+				    items: [{
+				      xtype: 'textfield',
+				      name: 'Identificador',
+				      id: 'Identificador',
+				      margin:'0 0 10 0',
+				      fieldLabel: 'Escribe el identificador',
+				      labelAlign: 'top',
+				      msgTarget: 'under',
+				      width: '100%',
+				      allowBlank: true,
+				      listeners:{
+					change: function(thisField, newValue, oldValue, eOpts ){
+						Ext.getCmp('ComboDepartamento').setDisabled(true);
+						Ext.getCmp('Buscar').setDisabled(false);
+					}
+				      }
+				    }]
+			      	},{
+				      	layout: 'column',
+					margin: '10 5 0 5',
+					border: false,
+					items:[{
+						columnWidth: '0.5',
+						border: false,
+						layout: {
+						    type: 'vbox',
+						    align: 'center'
+						},
+						items:[{
+				            		xtype: 'button',
+							text: 'Buscar',
+							id: 'Buscar',
+							disabled: true,
+							listeners: {
+								    click: function(thisbutton, e, eOpts){
+											var features;
+											if(popup != ""){
+													map.removeOverlay(popup);
+													popup = "";
+											}
+
+											var id = Ext.getCmp('Identificador').getValue();
+											var ID = Ext.getCmp('ComboPredio').getValue();
+
+											if ((id == null || id == "") && (ID == null || ID == "")) {
+												Ext.Msg.alert('Advertencia', 'Por favor, seleccione o escriba un identificador', Ext.emptyFn);
+											}else if (id == null || id == ""){
+
+												cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + Ext.getCmp('ComboComuna').getValue() + "'%20AND%20" + 'barrio=' + "'" + Ext.getCmp('ComboBarrio').getValue() + "'%20AND%20" + 'manzana=' + "'" + Ext.getCmp('ComboManzana').getValue() + "'%20AND%20" + 'predio=' + "'" + Ext.getCmp('ComboPredio').getValue() + "'";
+												typeNameLayer = 'typeName=' + prefijo + ':' + capaElPredialesUnion;
+
+												var url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPorNumPredial);
 
 												Ext.Ajax.request({
 													url: url,
@@ -687,429 +1106,11 @@ function createPanelLeft()
 													method: 'POST',
 													success: function(response, opts) {
 														features = new ol.format.GeoJSON().readFeatures(response.responseText);
+
 													}
 												});
 
 												var xmin = features[0].getGeometry().getExtent()[0];
-		    						    		var ymin = features[0].getGeometry().getExtent()[1];
-		    						    		var xmax = features[0].getGeometry().getExtent()[2];
-		    						    		var ymax = features[0].getGeometry().getExtent()[3];
-
-		    						    		for (var i = 0; i < features.length; i++) {
-		    						    			var extentini = features[i].getGeometry().getExtent();
-
-		    						    			if (extentini[0] < xmin) {
-		    						    				xmin = extentini[0];
-		    						    			}
-		    						    			if (extentini[1] < ymin) {
-		    						    				ymin = extentini[1];
-		    						    			}
-		    						    			if (extentini[2] > xmax) {
-		    						    				xmax = extentini[2];
-		    						    			}
-		    						    			if (extentini[3] > ymax) {
-		    						    				ymax = extentini[3];
-		    						    			}
-		    						    		}
-
-		    						    		var extent = [xmin, ymin, xmax, ymax];
-
-		    						    		map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
-
-											}
-
-    						    		}
-								}]
-							}]
-			           	},{
-				             layout: 'column',
-							 margin: '10 5 0 5',
-							 border: false,
-							 items:[{
-								columnWidth: '0.735',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
-					            		xtype: 'combobox',
-										name: 'ComboBarrio',
-										id: 'ComboBarrio',
-										fieldLabel: 'Selecciona el Barrio',
-										labelAlign: 'top',
-										msgTarget: 'under',
-										disabled: true,
-										width: '100%',
-										store: Ext.create('Ext.data.Store', {
-									    	id: 'storeLocBarrio',
-									    	model: 'modelLocBarrio',
-									    	autoLoad: false,
-									    	proxy: {
-									    		type: 'ajax',
-									    		url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
-									    		reader: {
-									    			type: 'json',
-									    			rootProperty: 'features'
-									    		}
-									    	}
-								    	}),
-									    displayField: 'idBarrio',
-									    valueField: 'idBarrio',
-									    triggerAction: "all",
-									    queryMode: 'local',
-									    typeAhead: true,
-									    editable: true,
-									    listeners:{
-											    	beforequery: function (record) {
-											    		record.query = new RegExp(record.query, 'i');
-											    		record.forceAll = true;
-											    	},
-											    	select: function(thisCombo, record, eOpts){
-												    	Ext.getCmp('ComboManzana').setDisabled(false);
-												    	Ext.getCmp('btncentrarbarr').setDisabled(false);
-
-														cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + Ext.getCmp('ComboComuna').getValue() + "'%20AND%20" + 'barrio=' + "'" + thisCombo.getValue() + "'";
-														typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
-														propertyName = 'propertyName=departamento,municipio,zona,sector,comuna,barrio,manzana';
-														ordenarPor = 'sortBy=manzana';
-
-														Ext.getCmp('ComboManzana').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor + '&' + propertyName);
-
-														var arr = [];
-														Ext.getCmp('ComboManzana').getStore().load(function(){
-															  this.each(function(record){
-															      var roles = record.get('idManzana');
-															      arr.push(record.get('idManzana'));
-															   });
-
-															  function unique(value, index, self) {
-															       return self.indexOf(value) === index;
-															  }
-
-															  var iduniq = arr.filter(unique);
-															  var item = [];
-															  for (i=0;i<iduniq.length;i++){
-																  item.push({idManzana:iduniq[i]});
-															  }
-
-															  Ext.getCmp('ComboManzana').getStore().removeAll();
-															  Ext.getCmp('ComboManzana').getStore().setData(item);
-
-														});
-											    	},
-											    	change: function(){
-															Ext.getCmp('ComboManzana').setValue("");
-															Ext.getCmp('ComboPredio').setValue("");
-													}
-							    		}
-					            }]
-							},{ 
-							 	columnWidth: '0.265',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
-            						xtype: 'button',
-	    							text: 'Centrar',
-	    							disabled: true,
-	    							id: 'btncentrarbarr',
-	    							margin: '26 15 0 0',
-    						    	listeners: {
-    						    		click: function(thisbutton, e, eOpts){
-							    			var features;
-							    			var url = Ext.getCmp('ComboManzana').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna%2Cbarrio%2Cmanzana', '');
-
-											Ext.Ajax.request({
-												url: url,
-												async: false,
-												method: 'POST',
-												success: function(response, opts) {
-													features = new ol.format.GeoJSON().readFeatures(response.responseText);
-
-												}
-											});
-
-											var xmin = features[0].getGeometry().getExtent()[0];
-	    						    		var ymin = features[0].getGeometry().getExtent()[1];
-	    						    		var xmax = features[0].getGeometry().getExtent()[2];
-	    						    		var ymax = features[0].getGeometry().getExtent()[3];
-
-	    						    		for (var i = 0; i < features.length; i++) {
-	    						    			var extentini = features[i].getGeometry().getExtent();
-	    						    			if (extentini[0] < xmin) {
-	    						    				xmin = extentini[0];
-	    						    			}
-	    						    			if (extentini[1] < ymin) {
-	    						    				ymin = extentini[1];
-	    						    			}
-	    						    			if (extentini[2] > xmax) {
-	    						    				xmax = extentini[2];
-	    						    			}
-	    						    			if (extentini[3] > ymax) {
-	    						    				ymax = extentini[3];
-	    						    			}
-	    						    		}
-
-	    						    		var extent = [xmin, ymin, xmax, ymax];
-
-	    						    		map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
-										}
-    						    	}
-								}]
-		 				 	}]
-				           	
-				        },{
-				            layout: 'column',
-							margin: '10 5 0 5',
-							border: false,
-							items:[{
-								columnWidth: '0.735',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
-					            		xtype: 'combobox',
-										name: 'ComboManzana',
-										id: 'ComboManzana',
-										fieldLabel: 'Selecciona la Manzana o Vereda',
-										labelAlign: 'top',
-										msgTarget: 'under',
-										disabled: true,
-										width: '100%',
-										store: Ext.create('Ext.data.Store', {
-										    	id: 'storeLocManzana',
-										    	model: 'modelLocManzana',
-										    	autoLoad: false,
-										    	proxy: {
-										    		type: 'ajax',
-										    		url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPor,
-										    		reader: {
-										    			type: 'json',
-										    			rootProperty: 'features'
-										    		}
-										    	}
-										}),
-									    displayField: 'idManzana',
-									    valueField: 'idManzana',
-									    triggerAction: "all",
-									    queryMode: 'local',
-									    typeAhead: true,
-									    editable: true,
-									    listeners:{
-											    	beforequery: function (record) {
-											    		record.query = new RegExp(record.query, 'i');
-											    		record.forceAll = true;
-											    	},
-											    	select: function(thisCombo, record, eOpts){
-
-											    		Ext.getCmp('ComboPredio').setDisabled(false);
-											    		Ext.getCmp('btncentrarman').setDisabled(false);
-
-														cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + Ext.getCmp('ComboComuna').getValue() + "'%20AND%20" + 'barrio=' + "'" + Ext.getCmp('ComboBarrio').getValue() + "'%20AND%20" + 'manzana=' + "'" + thisCombo.getValue() + "'";
-														typeNameLayer = 'typeName=' + prefijo + ':' + capaTerreno;
-														propertyName = 'propertyName=departamento,municipio,zona,sector,comuna,barrio,manzana,predio';
-
-														Ext.getCmp('ComboPredio').getStore().getProxy().url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPorNumPredial + '&' + propertyName);
-
-														var arr = [];
-														Ext.getCmp('ComboPredio').getStore().load(function(){
-																  this.each(function(record){
-																      var roles = record.get('idPredio');
-																      arr.push(record.get('idPredio'));
-
-																   });
-
-																  function unique(value, index, self) {
-																       return self.indexOf(value) === index;
-																  }
-
-																  var iduniq = arr.filter(unique);
-																  var item = [];
-																  for (i=0;i<iduniq.length;i++){
-																	  item.push({idPredio:iduniq[i]});
-																  }
-
-																  Ext.getCmp('ComboPredio').getStore().removeAll();
-																  Ext.getCmp('ComboPredio').getStore().setData(item);
-
-														});
-											    	},
-											    	change: function(){
-															Ext.getCmp('ComboPredio').setValue("");
-													}
-							    		}
-					            }]
-							},{ 
-								columnWidth: '0.265',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
-		            					xtype: 'button',
-		    							text: 'Centrar',
-		    							disabled: true,
-		    							id: 'btncentrarman',
-		    							margin: '26 15 0 0',
-		    						  	listeners: {
-					    						    click: function(thisbutton, e, eOpts){
-										    			var features;
-										    			var url = Ext.getCmp('ComboPredio').getStore().getProxy().url.replace('propertyName%3Ddepartamento%2Cmunicipio%2Czona%2Csector%2Ccomuna%2Cbarrio%2Cmanzana%2Cpredio', '');;
-
-														Ext.Ajax.request({
-															url: url,
-															async: false,
-															method: 'POST',
-															success: function(response, opts) {
-																features = new ol.format.GeoJSON().readFeatures(response.responseText);
-															}
-														});
-
-														var xmin = features[0].getGeometry().getExtent()[0];
-				    						    		var ymin = features[0].getGeometry().getExtent()[1];
-				    						    		var xmax = features[0].getGeometry().getExtent()[2];
-				    						    		var ymax = features[0].getGeometry().getExtent()[3];
-
-				    						    		for (var i = 0; i < features.length; i++) {
-				    						    			var extentini = features[i].getGeometry().getExtent();
-				    						    			if (extentini[0] < xmin) {
-				    						    				xmin = extentini[0];
-				    						    			}
-				    						    			if (extentini[1] < ymin) {
-				    						    				ymin = extentini[1];
-				    						    			}
-				    						    			if (extentini[2] > xmax) {
-				    						    				xmax = extentini[2];
-				    						    			}
-				    						    			if (extentini[3] > ymax) {
-				    						    				ymax = extentini[3];
-				    						    			}
-				    						    		}
-
-			    						    			var extent = [xmin, ymin, xmax, ymax];
-
-			    						    			map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
-		    										}
-	    						    	}
-								}]
-				 			}]
-			           	},{
-							xtype: 'combobox',
-							name: 'ComboPredio',
-							id: 'ComboPredio',
-							fieldLabel: 'Selecciona el Predio',
-							labelAlign: 'top',
-							margin:'0 0 10 0',
-							msgTarget: 'under',
-							disabled: true,
-							width: '100%',
-						    store: Ext.create('Ext.data.Store', {
-							    	id: 'storeLocPredio',
-							    	model: 'modelLocPredio',
-							    	autoLoad: false,
-							    	proxy: {
-							    		type: 'ajax',
-							    		url: 'proxy.jsp?' + WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPorNumPredial,
-							    		reader: {
-							    			type: 'json',
-							    			rootProperty: 'features'
-							    		}
-							    	}
-						    }),
-						    displayField: 'idPredio',
-						    valueField: 'idPredio',
-						    triggerAction: "all",
-						    queryMode: 'local',
-						    typeAhead: true,
-						    editable: true,
-						    listeners:{
-						    	beforequery: function (record) {
-						    		record.query = new RegExp(record.query, 'i');
-						    		record.forceAll = true;
-						    	},
-						    	select: function(thisCombo, record, eOpts){
-										Ext.getCmp('Buscar').setDisabled(false);
-						    	}
-					    	}
-			          }]
-			    	},{
-	            		xtype: 'fieldset',
-			            width: '100%',
-			            title: 'B˙squeda directa del identificador predial',
-			            columnWidth: 0.5,
-			            labelWidth: 75,
-			            labelAlign: 'top',
-						msgTarget: 'under',
-				      	items: [{
-						      xtype: 'textfield',
-							  name: 'Identificador',
-							  id: 'Identificador',
-							  margin:'0 0 10 0',
-							  fieldLabel: 'Escribe el identificador',
-							  labelAlign: 'top',
-							  msgTarget: 'under',
-						      width: '100%',
-						      allowBlank: true,
-						      listeners:{
-					        	change: function(thisField, newValue, oldValue, eOpts ){
-					        		Ext.getCmp('ComboDepartamento').setDisabled(true);
-					        		Ext.getCmp('Buscar').setDisabled(false);
-					        	}
-						      }
-					   	}]
-			      	},{
-				      	layout: 'column',
-						margin: '10 5 0 5',
-						border: false,
-						items:[{
-								columnWidth: '0.5',
-								border: false,
-								layout: {
-								    type: 'vbox',
-								    align: 'center'
-								},
-								items:[{
-				            		xtype: 'button',
-									text: 'Buscar',
-									id: 'Buscar',
-									disabled: true,
-								   	listeners: {
-										    click: function(thisbutton, e, eOpts){
-										    		var features;
-										    		if(popup != ""){
-															map.removeOverlay(popup);
-															popup = "";
-													}
-
-													var id = Ext.getCmp('Identificador').getValue();
-													var ID = Ext.getCmp('ComboPredio').getValue();
-
-													if ((id == null || id == "") && (ID == null || ID == "")) {
-														Ext.Msg.alert('Advertencia', 'Por favor, seleccione o escriba un identificador', Ext.emptyFn);
-													}else if (id == null || id == ""){
-
-														cqlfilter = 'CQL_FILTER=departamento=' + "'" + Ext.getCmp('ComboDepartamento').getValue() + "'%20AND%20"+ 'municipio=' + "'" + Ext.getCmp('ComboMunicipio').getValue() + "'%20AND%20" + 'zona=' + "'" + Ext.getCmp('ComboZona').getValue() + "'%20AND%20" + 'sector=' + "'" + Ext.getCmp('ComboSector').getValue() + "'%20AND%20" + 'comuna=' + "'" + Ext.getCmp('ComboComuna').getValue() + "'%20AND%20" + 'barrio=' + "'" + Ext.getCmp('ComboBarrio').getValue() + "'%20AND%20" + 'manzana=' + "'" + Ext.getCmp('ComboManzana').getValue() + "'%20AND%20" + 'predio=' + "'" + Ext.getCmp('ComboPredio').getValue() + "'";
-														typeNameLayer = 'typeName=' + prefijo + ':' + capaElPredialesUnion;
-
-														var url = 'proxy.jsp?' + encodeURIComponent(WFS + request + '&' + service + '&' + version + '&' +  typeNameLayer + '&' + cqlfilter + '&' + format + '&' + ordenarPorNumPredial);
-
-														Ext.Ajax.request({
-															url: url,
-															async: false,
-															method: 'POST',
-															success: function(response, opts) {
-																features = new ol.format.GeoJSON().readFeatures(response.responseText);
-
-															}
-														});
-
-														var xmin = features[0].getGeometry().getExtent()[0];
 				    						    		var ymin = features[0].getGeometry().getExtent()[1];
 				    						    		var xmax = features[0].getGeometry().getExtent()[2];
 				    						    		var ymax = features[0].getGeometry().getExtent()[3];
@@ -1136,9 +1137,9 @@ function createPanelLeft()
 																			map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
 																			break;
 			    						    					}
-															}
-														}else if (arraytipos.includes(capaConstruccion.replace("vw_", ""))){
-															for (var i = 0; i < features.length; i++) {
+													}
+												}else if (arraytipos.includes(capaConstruccion.replace("vw_", ""))){
+													for (var i = 0; i < features.length; i++) {
 						    						    		if (arraytipos.includes(capaConstruccion.replace("vw_", "")) && features[i].getProperties().tipopredio == capaConstruccion.replace("vw_", "")){
 							    						    		features[i].setProperties(Object.assign({'Tipo': nbConstruccion}, features[i].getProperties()));
 																			FeaturesSelect.push(features[i]);
@@ -1147,9 +1148,9 @@ function createPanelLeft()
 																			map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
 																			break;
 						    						    		}
-															}
-														}else if (arraytipos.includes(capaUnidad.replace("vw_", ""))){
-															for (var i = 0; i < features.length; i++) {
+													}
+												}else if (arraytipos.includes(capaUnidad.replace("vw_", ""))){
+													for (var i = 0; i < features.length; i++) {
 						    						    		if (arraytipos.includes(capaUnidad.replace("vw_", "")) && features[i].getProperties().tipopredio == capaUnidad.replace("vw_", "")){
 							    						  			features[i].setProperties(Object.assign({'Tipo': nbUnion}, features[i].getProperties()));
 																			FeaturesSelect.push(features[i]);
@@ -1158,16 +1159,16 @@ function createPanelLeft()
 																			map.getView().fit(extent, {padding: [170, 50, 30, 150], constrainResolution: false});
 																			break;
 						    						    		}
-															}
-														}
-
-													}else if(ID == null || ID == ""){
-															var message = SelectElements(id);
-															if(message == true){
-																Ext.Msg.alert('Advertencia', 'El identificador ' + id + ' no existe ', Ext.emptyFn);
-															}
 													}
+												}
+
+											}else if(ID == null || ID == ""){
+												var message = SelectElements(id);
+												if(message == true){
+													Ext.Msg.alert('Advertencia', 'El identificador ' + id + ' no existe ', Ext.emptyFn);
+												}
 											}
+										}
 								    }
 					        	}]
 				 	  	},{ 
@@ -1178,7 +1179,7 @@ function createPanelLeft()
 							    align: 'center'
 							},
 							items:[{
-				            	xtype: 'button',
+				            			xtype: 'button',
 								text: 'Borrar',
 								listeners: {
 									click: function(thisbutton, e, eOpts){
@@ -1222,12 +1223,12 @@ function createPanelLeft()
 									}
 					    		}
 				        	}]
-						}]
+					}]
 			         }
 		          ]
 			  }]
 	 	 },{
-			title: 'MediciÛn',
+			title: 'Medici√≥n',
 			width: '100%',
 			border : true,
 			items:[{
@@ -1247,7 +1248,7 @@ function createPanelLeft()
 							},
 							items:[{
 								xtype: 'button',
-								text: '¡rea',
+								text: '√Årea',
 								iconCls: 'icoMedirArea',
 								cls: 'btnAniadirWMS',
 								width: 110,
@@ -1347,16 +1348,16 @@ function createPanelLeft()
 									id: 'storeMeasureUnid',
 									fields: ['uni', 'unidad', 'tipo'],
 									data : [
-											{uni: 'ha', unidad: 'Hect·reas', tipo: 1},
-											{uni: 'km2', unidad: 'KilÛmetros cuadrados', tipo: 1},
+											{uni: 'ha', unidad: 'Hect√°reas', tipo: 1},
+											{uni: 'km2', unidad: 'Kil√≥metros cuadrados', tipo: 1},
 											{uni: 'm2', unidad: 'Metros cuadrados', tipo: 1},
-											{uni: 'km', unidad: 'KilÛmetros', tipo: 2},
+											{uni: 'km', unidad: 'Kil√≥metros', tipo: 2},
 											{uni: 'm', unidad: 'Metros', tipo: 2}
 									],
-								    filters: [{
-								    	property: 'tipo',
-								    	value: 0
-								    }]
+									filters: [{
+										property: 'tipo',
+										value: 0
+									}]
 								}),
 								listeners:{
 									select: function (thisCombo, record, eOpts)
@@ -1377,15 +1378,15 @@ function createPanelLeft()
 											var output;
 										  	if (thisCombo.getValue() == 'km2')
 										  	{
-										  		output = '¡rea: ' + (Math.round(area / 1000000 * 100) / 100).toFixed(2) + ' ' + 'Km<sup>2</sup>';
+										  		output = '√Årea: ' + (Math.round(area / 1000000 * 100) / 100).toFixed(2) + ' ' + 'Km<sup>2</sup>';
 										  	}
 										  	else if (thisCombo.getValue() == 'ha')
 										  	{
-										  		output = '¡rea: ' + (Math.round(area * 100) / 100 / 10000).toFixed(2) + ' ' + 'ha';
+										  		output = '√Årea: ' + (Math.round(area * 100) / 100 / 10000).toFixed(2) + ' ' + 'ha';
 										  	}
 										  	else if (thisCombo.getValue() == 'm2')
 										  	{
-										  		output = '¡rea: ' + (Math.round(area * 100) / 100).toFixed(2) + ' ' + 'm<sup>2</sup>';
+										  		output = '√Årea: ' + (Math.round(area * 100) / 100).toFixed(2) + ' ' + 'm<sup>2</sup>';
 										  	}
 										  	else if (Ext.getCmp('comboMeasureUnid').getValue() == 'km')
 										  	{
@@ -1446,7 +1447,7 @@ function createPanelLeft()
 					}]
 				}]
 			},{
-				title: 'ImpresiÛn',
+				title: 'Impresi√≥n',
 				width: '100%',
 				border : true,
 				items:[{
@@ -1457,75 +1458,75 @@ function createPanelLeft()
 		        		xtype: 'fieldset',
 			          	width: '100%',
 			          	title: 'PDF',
-			            columnWidth: 0.5,
-			            labelWidth: 75,
-						margin: '10 10 0 10',
-	            		labelAlign: 'top',
-						msgTarget: 'under',
-			            layout: 'anchor',
-			            defaults: {
-			                layout: '100%'
-			            },
-			            defaultType: 'combobox',
-			            items: [{
+			            	columnWidth: 0.5,
+			            	labelWidth: 75,
+					margin: '10 10 0 10',
+	            			labelAlign: 'top',
+					msgTarget: 'under',
+					layout: 'anchor',
+					defaults: {
+						layout: '100%'
+					},
+					defaultType: 'combobox',
+					items: [{
 			            		xtype: 'combobox',
 			            		id: 'combosize',
-			            		fieldLabel: 'TamaÒo de p·gina',
-								labelAlign: 'top',
-								msgTarget: 'under',
-								margin: '0 0 10 0',
-								width: '100%',
-								flex: 1,
-							    queryMode: 'local',
-							    displayField: 'name',
-							    valueField: 'value',
-							    store: Ext.create('Ext.data.Store', {
-						    		fields: ['name', 'value'],
-						    		data : [
-						    			{"name":"A3", 'value': 'a3'},
-						    			{"name":"A4", 'value': 'a4'}
+			            		fieldLabel: 'Tama√±o de p√°gina',
+						labelAlign: 'top',
+						msgTarget: 'under',
+						margin: '0 0 10 0',
+						width: '100%',
+						flex: 1,
+					    	queryMode: 'local',
+					    	displayField: 'name',
+					   	 valueField: 'value',
+					   	 store: Ext.create('Ext.data.Store', {
+							fields: ['name', 'value'],
+							data : [
+								{"name":"A3", 'value': 'a3'},
+								{"name":"A4", 'value': 'a4'}
 			            			]
 			            		})
 		           		}]
-					},{
+				},{
 			      		layout: 'column',
-						margin: '10 5 0 5',
+					margin: '10 5 0 5',
+					border: false,
+					items:[{
+						columnWidth: '1.755',
 						border: false,
+						layout: {
+						    type: 'vbox',
+						    align: 'center'
+						},
 						items:[{
-							columnWidth: '1.755',
-							border: false,
-							layout: {
-							    type: 'vbox',
-							    align: 'center'
-							},
-							items:[{
-									xtype: 'button',
+							xtype: 'button',
 		            				text: 'Imprimir',
-									id: 'imprimir',
-									listeners: {
-										click: function(){
+							id: 'imprimir',
+							listeners: {
+								click: function(){
 
-											var format = Ext.getCmp('combosize').value;
- 											var resolution = '72';
+									var format = Ext.getCmp('combosize').value;
+									var resolution = '72';
 
- 											var myMask = new Ext.LoadMask({
-	 											 msg : "Imprimiendo...",
-	 											 target : Ext.getCmp("ImpForm")
- 											});
+									var myMask = new Ext.LoadMask({
+										 msg : "Imprimiendo...",
+										 target : Ext.getCmp("ImpForm")
+									});
 
-										 	if (format == null && resolution == null){
-												Ext.Msg.alert('Advertencia', 'Por favor, selecione un tamaÒo de p·gina y una resoluciÛn', Ext.emptyFn);
-											}else if (format == null){
-												Ext.Msg.alert('Advertencia', 'Por favor, selecione un tamaÒo de p·gina', Ext.emptyFn);
-											}else if (resolution == null){
-												Ext.Msg.alert('Advertencia', 'Por favor, selecione una resoluciÛn', Ext.emptyFn);
-											}else{
-												 print(format, resolution, myMask);
-											}
-										}
+									if (format == null && resolution == null){
+										Ext.Msg.alert('Advertencia', 'Por favor, selecione un tama√±o de p√°gina y una resoluci√≥n', Ext.emptyFn);
+									}else if (format == null){
+										Ext.Msg.alert('Advertencia', 'Por favor, selecione un tama√±o de p√°gina', Ext.emptyFn);
+									}else if (resolution == null){
+										Ext.Msg.alert('Advertencia', 'Por favor, selecione una resoluci√≥n', Ext.emptyFn);
+									}else{
+										 print(format, resolution, myMask);
 									}
+								}
+							}
 				      		}]
-						}]
+					}]
 					}]
 		  		}]
 			},{
@@ -1540,138 +1541,138 @@ function createPanelLeft()
 			        	xtype: 'fieldset',
 				        width: '100%',
 				        columnWidth: 0.5,
-						margin: '10 10 0 10',
-			            labelWidth: 75,
-			            labelAlign: 'top',
-						msgTarget: 'under',
-			            items: [{
+					margin: '10 10 0 10',
+			            	labelWidth: 75,
+			            	labelAlign: 'top',
+					msgTarget: 'under',
+			            	items: [{
 				            	xtype: 'combobox',
 				            	id: 'combodraw',
-				            	fieldLabel: 'Tipo de geometrÌa',
-								labelAlign: 'top',
-								msgTarget: 'under',
-								width: '100%',
-								margin: '0 0 10 0',
-								flex: 1,
-							  	queryMode: 'local',
-							  	displayField: 'name',
-					    		valueField: 'value',
-				           		store: Ext.create('Ext.data.Store', {
+				            	fieldLabel: 'Tipo de geometr√≠a',
+						labelAlign: 'top',
+						msgTarget: 'under',
+						width: '100%',
+						margin: '0 0 10 0',
+						flex: 1,
+						queryMode: 'local',
+						displayField: 'name',
+						valueField: 'value',
+						store: Ext.create('Ext.data.Store', {
 				            	    fields: ['name', 'value'],
 				            	    data : [
 				            	        {"name":"Punto", "value": 'Point'},
-				            	        {"name":"LÌnea", "value": 'LineString'},
-				            	        {"name":"PolÌgono", "value": 'Polygon'},
-				            	        {"name":"CÌrculo", "value": 'Circle'}
+				            	        {"name":"L√≠nea", "value": 'LineString'},
+				            	        {"name":"Pol√≠gono", "value": 'Polygon'},
+				            	        {"name":"C√≠rculo", "value": 'Circle'}
 				            	    ]
 				            	})
 		          		},{
-			            	xtype: 'label',
-			            	forId: 'myFieldId',
-	                  		text: 'SelecciÛn del color',
-	                  		margin: '10 0 0 0'
-					    },{
-		            		xtype: 'colorpicker',
-		            		id: 'colorpicker',
-							width: '100%',
-							margin: '5 0 0 0'
-					    }]
-					},{
-		         		 layout: 'column',
-						 margin: '10 5 0 5',
-						 border: false,
-						 items:[{
-							columnWidth: '0.5',
-							border: false,
-							layout: {
-							    type: 'vbox',
-							    align: 'center'
-							},
-							items:[{
-	            				xtype: 'button',
-	            				text: 'Dibujar',
-								id: 'dibujar',
-								listeners: {
-									click: function(){
+						xtype: 'label',
+						forId: 'myFieldId',
+						text: 'Selecci√≥n del color',
+						margin: '10 0 0 0'
+				    	},{
+		            			xtype: 'colorpicker',
+		            			id: 'colorpicker',
+						width: '100%',
+						margin: '5 0 0 0'
+				    	}]
+				},{
+					 layout: 'column',
+					 margin: '10 5 0 5',
+					 border: false,
+					 items:[{
+						columnWidth: '0.5',
+						border: false,
+						layout: {
+						    type: 'vbox',
+						    align: 'center'
+						},
+						items:[{
+					xtype: 'button',
+					text: 'Dibujar',
+					id: 'dibujar',
+					listeners: {
+						click: function(){
 
-										var typeSelect = Ext.getCmp('combodraw').getValue();
-										Ext.getBody().setStyle("cursor", "default");
-										ol.Observable.unByKey(eventMapSingleClick);
+							var typeSelect = Ext.getCmp('combodraw').getValue();
+							Ext.getBody().setStyle("cursor", "default");
+							ol.Observable.unByKey(eventMapSingleClick);
 
-										ol.Observable.unByKey(eventpointermove);
+							ol.Observable.unByKey(eventpointermove);
 
-										var value = Ext.getCmp('colorpicker').getValue();
+							var value = Ext.getCmp('colorpicker').getValue();
 
-										if (value == null && typeSelect == null){
-											Ext.Msg.alert('Advertencia', 'Por favor, selecione un tipo de geometrÌa y un color', Ext.emptyFn);
-										}else if (value == null){
-											Ext.Msg.alert('Advertencia', 'Por favor, selecione un color', Ext.emptyFn);
-										}else if (typeSelect == null){
-											Ext.Msg.alert('Advertencia', 'Por favor, selecione un tipo de geometrÌa', Ext.emptyFn);
-										}else{
-											var a = "#";
+							if (value == null && typeSelect == null){
+								Ext.Msg.alert('Advertencia', 'Por favor, selecione un tipo de geometr√≠a y un color', Ext.emptyFn);
+							}else if (value == null){
+								Ext.Msg.alert('Advertencia', 'Por favor, selecione un color', Ext.emptyFn);
+							}else if (typeSelect == null){
+								Ext.Msg.alert('Advertencia', 'Por favor, selecione un tipo de geometr√≠a', Ext.emptyFn);
+							}else{
+								var a = "#";
 
-											var position = 0;
+								var position = 0;
 
-											color = [value.slice(0, position), a, value.slice(position)].join('');
+								color = [value.slice(0, position), a, value.slice(position)].join('');
 
-											map.removeInteraction(draw);
-											map.removeInteraction(measure);
-											select.getFeatures().clear();
-											map.removeInteraction(select);
+								map.removeInteraction(draw);
+								map.removeInteraction(measure);
+								select.getFeatures().clear();
+								map.removeInteraction(select);
 
-											if(popup != ""){
-												map.removeOverlay(popup);
-												popup = "";
-											}
-											addInteractionDraw(typeSelect);
-
-											layerDraw.setStyle(new ol.style.Style({
-
-											    stroke: new ol.style.Stroke({
-											      color: color,
-											      width: 2
-											    }),
-											    image: new ol.style.Circle({
-											      radius: 7,
-											      fill: new ol.style.Fill({
-											        color: color
-											      })
-											    })
-											}))
-										}
-
-									}
+								if(popup != ""){
+									map.removeOverlay(popup);
+									popup = "";
 								}
+								addInteractionDraw(typeSelect);
+
+								layerDraw.setStyle(new ol.style.Style({
+
+								    stroke: new ol.style.Stroke({
+								      color: color,
+								      width: 2
+								    }),
+								    image: new ol.style.Circle({
+								      radius: 7,
+								      fill: new ol.style.Fill({
+									color: color
+								      })
+								    })
+								}))
+							}
+
+						}
+					}
 					        }]
-			  	 		},{ 
-			  	 			columnWidth: '0.5',
-						 	border: false,
-							layout: {
-								    type: 'vbox',
-								    align: 'center'
-							},
-							items:[{
+				},{ 
+					columnWidth: '0.5',
+					border: false,
+					layout: {
+						    type: 'vbox',
+						    align: 'center'
+					},
+					items:[{
 			            		xtype: 'button',
 			            		text: 'Borrar',
-								listeners: {
-									click: function(thisbutton, e, eOpts) {
+						listeners: {
+							click: function(thisbutton, e, eOpts) {
 
-											ol.Observable.unByKey(eventpointermove);
-											map.removeInteraction(draw);
-											layerDraw.getSource().clear();
+								ol.Observable.unByKey(eventpointermove);
+								map.removeInteraction(draw);
+								layerDraw.getSource().clear();
 
-											eventpointermove = map.on('pointermove', pointermoveIdentificar);
-											eventMapSingleClick = map.on('singleclick', singleclickIdentificar);
-											map.removeOverlay(helpTooltip);
-											map.removeOverlay(measureTooltip);
+								eventpointermove = map.on('pointermove', pointermoveIdentificar);
+								eventMapSingleClick = map.on('singleclick', singleclickIdentificar);
+								map.removeOverlay(helpTooltip);
+								map.removeOverlay(measureTooltip);
 
-									}
-							  }
-					      }]
-					 	}]
-					}]
+							}
+						  }
+					   }]
+				      }]
 				}]
+			     }]
 			}]
 		}],
 		listeners:{
@@ -1696,7 +1697,7 @@ function createPanelLeft()
 			}
 		},
 		buttons: ['->',{
-			text: "Buscar por topÛnimos",
+			text: "Buscar por top√≥nimos",
 			iconCls: 'icoLocalizar',
 			cls: 'btnLocalizar',
 			listeners: {
@@ -1714,7 +1715,7 @@ function createPanelLeft()
 				}
 			}
 		},{
-			text: "AÒadir WMS/WMTS",
+			text: "A√±adir WMS/WMTS",
 			iconCls: 'icoAniadirWMS',
 			cls: 'btnAniadirWMS',
 			handler: function(){
